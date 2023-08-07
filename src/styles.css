@@ -43,3 +43,5 @@ strong {
   line-height: 1;
 color:black;}
 .weather-temp .units{position:relative;}
+.weather-temp .default{color: rgb(98, 95, 95);cursor:default;}
+.weather-temp .default:hover{text-decoration: none;}
