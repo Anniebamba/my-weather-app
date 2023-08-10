@@ -17,6 +17,7 @@ h1 {
   text-align: left;
   line-height: 28px;
   margin-bottom: 0;
+  
 }
 .overview {
   margin-bottom: 20px;
@@ -41,7 +42,19 @@ strong {
   font-weight: 400;
   font-size: 64px;
   line-height: 1;
-color:black;}
-.weather-temp .units{position:relative;}
-.weather-temp .default{color: rgb(98, 95, 95);cursor:default;}
-.weather-temp .default:hover{text-decoration: none;}
+  color: black;
+}
+.weather-temp .units {
+  position: relative;
+}
+.weather-temp .default {
+  color: rgb(98, 95, 95);
+  cursor: default;
+}
+.weather-temp .default:hover {
+  text-decoration: none;
+}
+.weather-forecast{margin-top:30px; text-align:center;}
+.weather-forecast-date{font-size: 13px;color:rgb(9, 9, 9); opacity: 0.5;}
+.weather-forecast-temp{font-size: 13px;}
+.weather-forecast-temp-min{opacity: 0.6;}
