@@ -21,11 +21,12 @@ function formatDate(timestamp) {
   return `${day} ${hour}:${minutes}`;
 }
 
-function displayForecast(){
-  forecastElement= document.querySelector("#forecast");
+function displayForecast(response) {
+  console.log(response.data.daily);
+  forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Sat", "Sun","Mon","Tue","Wed","Thur"]
+  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thur"];
   days.forEach(function (day) {
     forecastHTML =
       forecastHTML +
@@ -39,16 +40,18 @@ function displayForecast(){
                 </div>
                 </div>`;
   });
-    forecastHTML = forecastHTML + `</div>`;
-    forecastElement.innerHTML = forecastHTML;
-  ;
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "a33b693cfbefd271b0ed075f9a8f65f0";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&unit=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
-
-
 function displayTemperature(response) {
-  console.log(response.data);
-  console.log(response.data.main.temp);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
   let descriptionElement = document.querySelector("#description");
@@ -70,10 +73,12 @@ function displayTemperature(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
-  let apiKey = "466e9221886a6c1c8d5c5e06eee0ec31";
+  let apiKey = "a33b693cfbefd271b0ed075f9a8f65f0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}
 &appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
@@ -108,4 +113,4 @@ farenheitLink.addEventListener("click", farenheitTemp);
 let celciusTemperature = null;
 let celciusLink = document.querySelector("#celcius");
 celciusLink.addEventListener("click", celciusTemp);
-displayForecast();
+
