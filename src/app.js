@@ -104,29 +104,11 @@ function workOnSearch(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-function farenheitTemp(event) {
-  event.preventDefault();
-  celciusLink.classList.remove("default");
-  farenheitLink.classList.add("default");
-  let farenheitTemperature = celciusTemperature * (9 / 5) + 32;
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(farenheitTemperature);
-}
 
-function celciusTemp(event) {
-  event.preventDefault();
-  celciusLink.classList.add("default");
-  farenheitLink.classList.remove("default");
-  temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = celciusTemperature;
-}
+
+
 let form = document.querySelector("#search");
 form.addEventListener("submit", workOnSearch);
 
-let farenheitLink = document.querySelector("#farenheit");
-farenheitLink.addEventListener("click", farenheitTemp);
 
-let celciusTemperature = null;
-let celciusLink = document.querySelector("#celcius");
-celciusLink.addEventListener("click", celciusTemp);
 
